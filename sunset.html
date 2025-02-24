@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotlight text effect</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+</head>
+
+<body>
+
+    <!-- spotlight -->
+    <div class="hotspot-container">
+        <div class="image-mask-container sunset">
+            <div class="image-noise-mask"></div>
+            <div id="spotlight" class="mouse-spotlight" style="--mouse-x: 0; --mouse-y: 0;"></div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    // spotlight script
+    const hotSpot = document.querySelector(".hotspot-container");
+    const mouseSpotlight = document.querySelector("#spotlight");
+    const maskContainer = document.querySelector(".image-mask-container");
+    hotSpot.addEventListener("mousemove", (e) => {
+        const spotlightHeight = mouseSpotlight.clientHeight;
+        const spotlightWidth = mouseSpotlight.clientWidth;
+        let maskContainerOffsetTop = maskContainer.offsetTop;
+        let maskContainerOffsetLeft = maskContainer.offsetLeft;
+        let totalOffsetTop = maskContainerOffsetTop + spotlightHeight / 2;
+        let totalOffsetLeft = maskContainerOffsetLeft + spotlightWidth / 2;
+        mouseSpotlight.style.setProperty("--mouse-x", e.x - totalOffsetLeft);
+        mouseSpotlight.style.setProperty("--mouse-y", e.y - totalOffsetTop);
+    });
+</script>
+
+</html>
